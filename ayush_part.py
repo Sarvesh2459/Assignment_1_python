@@ -1,4 +1,4 @@
-cards={"bot1":["HA","HJ","D10","D9","S8","DK","S5","SK","DA","CJ","C5"],"player":["HA","HJ","D10","D9","S8","DK","S5","SK","DA","CJ","C5"]}
+
 def call_players(cards):
     dict2=dict()
     call=0
