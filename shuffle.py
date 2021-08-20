@@ -13,5 +13,5 @@ random.shuffle(seat)
 print(seat)
 cnt = 0
 while cnt < 4:
-    print(main.startmatch(seat[cnt], distribute(deck_list)))
+    print(main.lowest(seat[cnt], distribute(deck_list)))
     cnt += 1
