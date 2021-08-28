@@ -8,7 +8,7 @@ def lowest(curr , cards ,  series = ''):
                     if j[1:] == i :
                         return  j
         else:
-            move = input()
+            move = input("Player : ")
             return  move
     else:
         if curr != "Player":
@@ -17,7 +17,7 @@ def lowest(curr , cards ,  series = ''):
                     if j[1:] == i and j[0] == series:
                         return  j
         else:
-            move = input()
+            move = input("Player : ")
             return move
     for i in order:
         for j in cards[curr]:
@@ -33,7 +33,7 @@ def currmatch(curr , cards , series = '' ):
                     if j[1:] == i :
                         return j
         else:
-            move = input()
+            move = input("Player : ")
             return move
     else:
         if curr != "Player":
@@ -42,7 +42,7 @@ def currmatch(curr , cards , series = '' ):
                     if j[1:] == i and j[0] == series:
                         return j
         else:
-            move = input()
+            move = input("Player : ")
             return move
     for i in orderrev:
         for j in cards[curr]:
@@ -86,7 +86,7 @@ def call_players(cards):
     
     for j in cards:
         if(j=="Player"):
-            call=int(input("enter your call"))
+            call=int(input("Enter your call : "))
         else:
             call=0
             for i in cards[j]:

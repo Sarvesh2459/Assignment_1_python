@@ -1,6 +1,8 @@
 import random , main
 
-def distribute(on):
+def distribute():
+    print('Do you want to use random cards(Y) \n Or do you want to read cards from file(N) ?')
+    on = input('\nY/N : ')
     deck = open('deck.txt' , 'r')
     deck_list = deck.readline().split()
     seat = deck.readline().split()
@@ -9,54 +11,103 @@ def distribute(on):
         random.shuffle(seat)
     return {"Bot1" : deck_list[0:13] , "Bot2" : deck_list[13:26] , "Bot3" : deck_list[26:39] , "Player" : deck_list[39:52]} , seat
 
-on = input('Do you want to read cards from file? Y/N')
-cards , seat = distribute(on)
-# order = ['2' , '3', '4' , '5' , '6' , '7' , '8', '9' ,'10' , 'J' , 'Q' , 'K' ,'A']
 
-print(seat)
-seat = seat + seat
+def starter():
+    global cards
+    global seat
+    global winner
+    global wins
+    global calls
+    cards , seat = distribute()
+    # order = ['2' , '3', '4' , '5' , '6' , '7' , '8', '9' ,'10' , 'J' , 'Q' , 'K' ,'A']
+    global calls
+    # print(seat)
+    seat = seat + seat
+    winner = seat[0]
+    wins = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}
+    calls = main.call_players(cards)
+    print('Call of Players = ' , end=' ')
+    for i in calls:
+        print(i,":",calls[i] , end= ' ')
+    print('\nCyclic Order')
+    for i in range(4):
+        print(seat[i] ,end = '->')
+    print('...')
+    print('\nStart from ',winner)
+
 cont = "Y"
 turn = 1
-winner = seat[0]
-wins = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}
-calls = main.call_players(cards)
-print(calls)
+starter()
+total_scores = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}
 while cont == "Y" or cont == "y" :
-    moves = {}
-    print("Turn : " ,turn)
-    print()
-    for j in cards:
-        print(cards[j])
-    print()
-    card0 = main.currmatch(winner, cards, series = '' )
-    print( winner ,  card0)
-    cards[winner].remove(card0)
-    moves[winner] = card0
-    cnt = seat.index(winner)
-    print(cnt)
-    for i in range(1,4):
-        cnt += 1
-        card = main.currmatch(seat[cnt] ,cards , card0[0])
-        card = main.checkcard(seat[cnt] , cards ,card0 ,card)
-        print(seat[cnt] , card)
-        cards[seat[cnt]].remove(card)
-        moves[seat[cnt]] = card
-    winner = main.winner(moves,card0[0])
-    print()
-    print(winner)
-    wins[winner] +=1
-    if turn == 13:
-        scores=main.score (calls,wins) 
-        print(scores)
-        max_score = 0
-        for i in scores:
-            if scores[i]>max_score:
-                max_score=scores[i]
-                win = i
-        print(i)
-        cont = input("Do you want to continue? Y/N : ")
-        turn = 1
-        cards = distribute(on)
-        random.shuffle(seat)
-    turn +=1
-    print()
+        moves = {}
+        print("\nTurn : " ,turn)
+        print()
+        c=1
+        print('Your Cards are = ')
+        print(cards["Player"])
+        print()
+        card0 = main.currmatch(winner, cards, series = '' )
+        # print( winner ,  card0)
+        if (winner == 'Player'):
+                pass
+        else:
+            print(winner , ' : ',card0)
+        c=1
+        while (c==1):
+            try:
+                cards[winner].remove(card0)
+                c=0
+            except ValueError:
+                    print("\ncard NOt Found")
+                    print('Choose another card\n')
+                    c=1
+        moves[winner] = card0
+        cnt = seat.index(winner)
+        for i in range(1,4):
+            c=1
+            cnt += 1
+            while (c==1):
+                try:
+                    card = main.currmatch(seat[cnt] ,cards , card0[0])
+                    card = main.checkcard(seat[cnt] , cards ,card0 ,card)
+                    if (seat[cnt] == 'Player'):
+                        pass
+                    else:
+                        print(seat[cnt] , ':',card)
+                    cards[seat[cnt]].remove(card)
+                    moves[seat[cnt]] = card
+                    c=0
+                except ValueError:
+                        print("\ncard NOt Found")
+                        print('Choose another card\n')
+                        c=1
+        winner = main.winner(moves,card0[0])
+        print()
+        print(winner , ' Wins')
+        wins[winner] +=1
+        if turn == 13:
+            scores=main.score (calls,wins) 
+            print(scores)
+            max_score = 0
+            for i in scores:
+                total_scores[i] += scores[i]
+                if scores[i]>max_score:
+                    print(max_score)
+                    max_score=scores[i]
+                    win = i
+            print(i , ' is the winner!!!!!!!')
+            cont = input("Do you want to continue? Y/N : ")
+            turn = 1
+            starter()
+            continue
+        turn +=1
+        print()
+else:
+    max_score_total = 0
+    for i in total_scores:
+                if total_scores[i]>max_score_total:
+                    max_score_total=total_scores[i]
+                    win_total = i
+
+    print('\n\n' ,i , ' wins the series')
