@@ -1,7 +1,7 @@
 import random , main
 
 def distribute():
-    print('Do you want to use random cards(Y) \n Or do you want to read cards from file(N) ?')
+    print('\nDo you want to use random cards(Y) \n Or do you want to read cards from file(N) ?')
     on = input('\nY/N : ')
     deck = open('deck.txt' , 'r')
     deck_list = deck.readline().split()
@@ -98,7 +98,7 @@ while cont == "Y" or cont == "y" :
                     print(max_score)
                     max_score=scores[i]
                     win = i
-            print(i , ' is the winner!!!!!!!')
+            print(win, ' is the winner!!!!!!!')
             cont = input("Do you want to continue? Y/N : ")
             turn = 1
             starter()
@@ -112,4 +112,4 @@ else:
                     max_score_total=total_scores[i]
                     win_total = i
 
-    print('\n\n' ,i , ' wins the series')
+    print('\n\n' ,win_total, ' wins the series')
