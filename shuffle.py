@@ -3,7 +3,7 @@ import random , main
 def distribute():
     print('\nDo you want read from file ?')
     on = input('\nY/N : ')
-    deck = open('d.txt' , 'r')
+    deck = open('deck.txt' , 'r')
     deck_list = deck.readline().split()
     seat = deck.readline().split()
     if on!='Y' and on!='y':
