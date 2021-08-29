@@ -100,6 +100,8 @@ while cont == "Y" or cont == "y" :
                     win = i
             print(win, ' is the winner!!!!!!!')
             cont = input("Do you want to continue? Y/N : ")
+            if(cont != "Y" or cont != "y"):
+                continue
             turn = 1
             starter()
             continue
