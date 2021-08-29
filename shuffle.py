@@ -1,5 +1,4 @@
 import random , main
-
 def distribute():
     print('\nDo you want read from file ?')
     on = input('\nY/N : ')
@@ -10,8 +9,6 @@ def distribute():
         random.shuffle(deck_list)
         random.shuffle(seat)
     return {"Bot1" : deck_list[0:13] , "Bot2" : deck_list[13:26] , "Bot3" : deck_list[26:39] , "Player" : deck_list[39:52]} , seat
-
-
 def starter():
     global cards
     global seat
@@ -19,9 +16,7 @@ def starter():
     global wins
     global calls
     cards , seat = distribute()
-    # order = ['2' , '3', '4' , '5' , '6' , '7' , '8', '9' ,'10' , 'J' , 'Q' , 'K' ,'A']
     global calls
-    # print(seat)
     seat = seat + seat
     winner = seat[0]
     wins = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}

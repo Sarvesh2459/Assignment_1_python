@@ -48,7 +48,6 @@ def currmatch(curr , cards , series = '' ):
         for j in cards[curr]:
             if j[1:] == i :
                 return  j
-
 def checkcard(player , cards ,card1 ,card2):
     order = ['2' , '3', '4' , '5' , '6' , '7' , '8', '9' ,'10' , 'J' , 'Q' , 'K' ,'A']
     if player!= "Player" :
@@ -58,7 +57,6 @@ def checkcard(player , cards ,card1 ,card2):
             return main.lowest(player, cards , card2[0] )
     else :
         return card2
-
 def winner(moves,series):
 
     list1=['A','K','Q','J','10','9','8','7','6','5','4','3','2']
@@ -67,7 +65,6 @@ def winner(moves,series):
             if moves[i][1:]==j:
                 if(series[0]==moves[i][0]):
                     return i
-                
 def score (dict1,dict2):
     dict3={}
     for i in dict1  :
@@ -78,7 +75,6 @@ def score (dict1,dict2):
             point = 10*(dict1[i]) + (dict2[i]-dict1[i])
         dict3[i]=point
     return dict3
-
 def call_players(cards):
     dict2=dict()
     
