@@ -25,6 +25,8 @@ def starter():
     seat = seat + seat
     winner = seat[0]
     wins = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}
+    print('\nYour Cards are = ')
+    print(cards["Player"] ,"\n")
     calls = main.call_players(cards)
     print('Call of Players = ' , end=' ')
     for i in calls:
@@ -44,18 +46,18 @@ while cont == "Y" or cont == "y" :
         print("\nTurn : " ,turn)
         print()
         c=1
-        print('Your Cards are = ')
-        print(cards["Player"])
+        if(turn!=1):
+            print('Your Cards are = ')
+            print(cards["Player"])
         print()
-        card0 = main.currmatch(winner, cards, series = '' )
-        # print( winner ,  card0)
-        if (winner == 'Player'):
-                pass
-        else:
-            print(winner , ' : ',card0)
         c=1
         while (c==1):
             try:
+                card0 = main.currmatch(winner, cards, series = '' )
+                if (winner == 'Player'):
+                        pass
+                else:
+                    print(winner , ' : ',card0)
                 cards[winner].remove(card0)
                 c=0
             except ValueError:
