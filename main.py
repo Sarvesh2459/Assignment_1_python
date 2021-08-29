@@ -70,8 +70,6 @@ def winner(moves,series):
                 
 def score (dict1,dict2):
     dict3={}
-    print(dict1)
-    print(dict2)
     for i in dict1  :
         
         if dict1[i] > dict2[i] :

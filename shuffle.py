@@ -1,12 +1,12 @@
 import random , main
 
 def distribute():
-    print('\nDo you want to use random cards(Y) \n Or do you want to read cards from file(N) ?')
+    print('\nDo you want read from file ?')
     on = input('\nY/N : ')
-    deck = open('deck.txt' , 'r')
+    deck = open('d.txt' , 'r')
     deck_list = deck.readline().split()
     seat = deck.readline().split()
-    if on=='Y' or on=='y':
+    if on!='Y' and on!='y':
         random.shuffle(deck_list)
         random.shuffle(seat)
     return {"Bot1" : deck_list[0:13] , "Bot2" : deck_list[13:26] , "Bot3" : deck_list[26:39] , "Player" : deck_list[39:52]} , seat
@@ -43,6 +43,9 @@ starter()
 total_scores = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}
 while cont == "Y" or cont == "y" :
         moves = {}
+        for j in cards:
+            print(cards[j])
+        print()
         print("\nTurn : " ,turn)
         print()
         c=1
@@ -72,7 +75,8 @@ while cont == "Y" or cont == "y" :
             while (c==1):
                 try:
                     card = main.currmatch(seat[cnt] ,cards , card0[0])
-                    card = main.checkcard(seat[cnt] , cards ,card0 ,card)
+                    winner = main.winner(moves,card0[0])
+                    card = main.checkcard(seat[cnt] , cards ,moves[winner] ,card)
                     if (seat[cnt] == 'Player'):
                         pass
                     else:
@@ -81,8 +85,8 @@ while cont == "Y" or cont == "y" :
                     moves[seat[cnt]] = card
                     c=0
                 except ValueError:
-                        print("\ncard NOt Found")
-                        print('Choose another card\n')
+                        print("\nCard Not Found in Deck")
+                        print('Choose another card (May be Write in Capital Letters)\n')
                         c=1
         winner = main.winner(moves,card0[0])
         print()
@@ -90,17 +94,18 @@ while cont == "Y" or cont == "y" :
         wins[winner] +=1
         if turn == 13:
             scores=main.score (calls,wins) 
-            print(scores)
+            print('Scores : ')
+            for i in scores:
+                print(i," : " ,scores[i])
             max_score = 0
             for i in scores:
                 total_scores[i] += scores[i]
                 if scores[i]>max_score:
-                    print(max_score)
                     max_score=scores[i]
                     win = i
             print(win, ' is the winner!!!!!!!')
             cont = input("Do you want to continue? Y/N : ")
-            if(cont != "Y" or cont != "y"):
+            if(cont != "Y" and cont != "y"):
                 continue
             turn = 1
             starter()
