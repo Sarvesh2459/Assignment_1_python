@@ -30,7 +30,7 @@ def starter():
     calls = main.call_players(cards)
     print('Call of Players = ' , end=' ')
     for i in calls:
-        print(i,":",calls[i] , end= ' ')
+        print(i,":",calls[i])
     print('\nCyclic Order')
     for i in range(4):
         print(seat[i] ,end = '->')
@@ -91,7 +91,7 @@ while cont == "Y" or cont == "y" :
         wins[winner] +=1
         if turn == 13:
             scores=main.score (calls,wins) 
-            print('Scores : ')
+            print('\nScores : ')
             for i in scores:
                 print(i," : " ,scores[i])
             max_score = 0
@@ -101,7 +101,7 @@ while cont == "Y" or cont == "y" :
                     max_score=scores[i]
                     win = i
             print(win, ' is the winner!!!!!!!')
-            cont = input("Do you want to continue? Y/N : ")
+            cont = input("\nDo you want to continue? Y/N : ")
             if(cont != "Y" and cont != "y"):
                 continue
             turn = 1
