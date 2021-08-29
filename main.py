@@ -84,7 +84,14 @@ def call_players(cards):
     
     for j in cards:
         if(j=="Player"):
-            call=int(input("Enter your call : "))
+            c=1
+            while(c==1):
+                try:
+                    call=int(input("Enter your call : "))
+                    c=0
+                except ValueError:
+                    print('Invalid Input')
+                    c=1
         else:
             call=0
             for i in cards[j]:

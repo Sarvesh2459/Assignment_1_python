@@ -43,9 +43,6 @@ starter()
 total_scores = {'Bot1' : 0 , 'Bot2' : 0 , 'Bot3' : 0 , 'Player' : 0}
 while cont == "Y" or cont == "y" :
         moves = {}
-        for j in cards:
-            print(cards[j])
-        print()
         print("\nTurn : " ,turn)
         print()
         c=1
