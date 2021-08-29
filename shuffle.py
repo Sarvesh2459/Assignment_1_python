@@ -115,5 +115,7 @@ else:
                 if total_scores[i]>max_score_total:
                     max_score_total=total_scores[i]
                     win_total = i
-
+    print('Total Scores : ')
+    for i in scores:
+        print(i," : " ,scores[i])
     print('\n\n' ,win_total, ' wins the series')
